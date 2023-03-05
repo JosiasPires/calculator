@@ -110,6 +110,14 @@ function calculate() {
         numB = undefined;
     }
     numB = undefined;
+    if (display.textContent === 'Infinity' || display.textContent === '-Infinity') {
+        display.textContent = 'Time seems infinite at times...';
+        value = 'Time seems infinite at times...';
+    }
+    if (display.textContent === 'NaN') {
+        display.textContent = 'NaN, a glitch in my reality.';
+        value = 'Time seems infinite at times...';
+    }
 }
 
 function removeLastNum() {
