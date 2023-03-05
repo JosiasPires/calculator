@@ -116,7 +116,7 @@ function calculate() {
     }
     if (display.textContent === 'NaN') {
         display.textContent = 'NaN, a glitch in my reality.';
-        value = 'Time seems infinite at times...';
+        value = 'NaN, a glitch in my reality.';
     }
 }
 
