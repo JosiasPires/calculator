@@ -69,6 +69,6 @@ body {
     transform: scale(0.95);
 }
 
-.opr {
+.opr, .ac, .del {
     color: #EE802E;
 }
