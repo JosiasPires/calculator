@@ -51,19 +51,45 @@ function resetCalc() {
 }
 
 function addNumber() {
-    value += this.textContent;
-    display.textContent = value;
+    if (numA === undefined && value !== '' && result !== undefined) {
+        if (value !== '.') {
+            if (this.textContent === '.') {
+                value = '0.'
+                display.textContent = '0.';
+            }
+            else {
+                if (value !== '0.') {
+                    value = '';
+                }
+            }
+        }
+        else {
+            value = '0.';
+        }
+    }
+    if (!(value.includes('.') && this.textContent === '.')) {
+        value += this.textContent;
+        if (value === '.') {
+            value = '0.'
+        }
+        display.textContent = value;
+    }
 }
 
 function setNumAndOpr() {
-    operator = this.textContent;
+    if (operator !== undefined && numA !== '' && numB === undefined && value === '') {
+        operator = this.textContent;
+    }
     if (numA === undefined && numB === undefined && value !== '') {
+        operator = this.textContent;
         numA = value;
         console.log('Armazenou no A');
         value = '';
         display.textContent = '';
     }
-    else if (numA !== undefined && numB === undefined) {
+    else if (numA !== undefined && numB === undefined && value !== '') {
+        console.log('resetou o A aqui')
+        operator = this.textContent;
         calculate();
         numA = value;
         value = '';
@@ -73,7 +99,7 @@ function setNumAndOpr() {
 }
 
 function calculate() {
-    if (numA !== undefined && numB === undefined) {
+    if (numA !== undefined && numB === undefined && value !== '') {
         numB = value;
         console.log('Armazenou no B e calculou')
         result = operate(operator, +numA, +numB);
@@ -89,6 +115,11 @@ function calculate() {
     numB = undefined;
 }
 
+function removeLastNum() {
+    value = value.slice(0, -1);
+    display.textContent = value;
+}
+
 clear.addEventListener('click', resetCalc);
 
 numbers.forEach(number => {
@@ -100,3 +131,11 @@ commands.forEach(command => {
 })
 
 calc.addEventListener('click', calculate);
+
+del.addEventListener('click', removeLastNum);
+
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace') {
+        removeLastNum();
+    }
+});
