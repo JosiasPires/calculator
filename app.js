@@ -29,3 +29,14 @@ function operate(opr, a, b) {
     }
 }
 
+const display = document.querySelector('.result');
+const numbers = Array.from(document.querySelectorAll('.num'));
+let value = '';
+
+numbers.forEach(number => {
+    number.addEventListener('click', () => {
+        value += number.textContent;
+        display.textContent = value;
+
+    })
+})
