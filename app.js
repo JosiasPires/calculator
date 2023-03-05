@@ -87,8 +87,10 @@ function setNumAndOpr() {
         display.textContent = '';
     }
     else if (numA !== undefined && numB === undefined && value !== '') {
-        operator = this.textContent;
         calculate();
+        if (operator !== this.textContent) {
+            operator = this.textContent;
+        }
         numA = value;
         value = '';
         numB = undefined;
@@ -98,7 +100,6 @@ function setNumAndOpr() {
 function calculate() {
     if (numA !== undefined && numB === undefined && value !== '') {
         numB = value;
-        console.log('Armazenou no B e calculou')
         result = operate(operator, +numA, +numB);
         value = String(result);
         display.textContent = value;
