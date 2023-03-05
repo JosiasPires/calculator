@@ -83,18 +83,15 @@ function setNumAndOpr() {
     if (numA === undefined && numB === undefined && value !== '') {
         operator = this.textContent;
         numA = value;
-        console.log('Armazenou no A');
         value = '';
         display.textContent = '';
     }
     else if (numA !== undefined && numB === undefined && value !== '') {
-        console.log('resetou o A aqui')
         operator = this.textContent;
         calculate();
         numA = value;
         value = '';
         numB = undefined;
-        // operator = undefined;
     }
 }
 
@@ -108,7 +105,6 @@ function calculate() {
         numA = undefined;
     }
     else if (numA !== undefined && numB !== undefined) {
-        console.log('passou aqui')
         numA = numB;
         numB = undefined;
     }
